@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF=8">
+    <title>CZAS</title>
+    <style>
+        body {
+            background-color: forestgreen;
+        }
+
+        #container {
+            background-color: fuchsia;
+            color: fushia;
+            width: auto;
+            width: 300px;
+            margin: auto;
+            text-align: center;
+            padding: 15px;
+            height: auto;
+            border: 2px solid red;
+            border-radius: 20px;
+        }
+
+        #zegar1{
+             border: solid 2px blue;
+            background-color: teal;
+            border-radius: 10px;
+            margin:20px
+            padding: 20px;
+            box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.5)
+        }
+        #d2 {
+            border: solid 2px violet;
+            background-color: purple;
+            border-radius: 10px;
+            margin: 20px;
+            font-size:25px;
+            font-weight: bold;
+            color: mediumseagreen;
+        }
+
+        #d1 {
+            border: solid 2px olive;
+            background-color: sandybrown;
+            border-radius: 10px;
+            margin: 20px
+        }
+
+    </style>
+
+
+    <script>
+        let data1 = new Date(2019, 05, 21, 11)
+        let data2 = new Date(2019, 07, 29, 11)
+
+
+        function ile_zostalo(data, id) {
+
+            let dzisiaj = new Date();
+            let koncowa = data - dzisiaj;
+            let s = koncowa / 1000;
+            let min = s / 60;
+            let h = min / 60;
+            let d = h / 24;
+
+            let ss = Math.floor(s % 60);
+            let mm = Math.floor(min % 60);
+            let hh = Math.floor(h % 24);
+            let dd = Math.floor(d);
+
+            document.getElementById(id).innerHTML = dd + " dni " + hh + " godzin " + mm + " minut " + ss + " sekund "
+        }
+
+        function Zegar() {
+            let dzisiaj = new Date();
+            let dzien = dzisiaj.getDate();
+            let mc = dzisiaj.getMonth();
+            let rok = dzisiaj.getFullYear();
+            let godz = dzisiaj.getHours();
+            let min = dzisiaj.getMinutes();
+            let s = dzisiaj.getSeconds();
+            document.getElementById("zegar1").innerHTML = dzien + "/" + mc + "/" + rok + "<br>" + godz + ":" + min + ":" + s;
+
+
+            ile_zostalo(data1, "d1")
+            ile_zostalo(data2, "d2")
+
+            setTimeout("Zegar()", 1000);
+
+        }
+
+    </script>
+</head>
+
+<body onload="Zegar()">
+    <div id="container">
+
+        <div id="zegar1">???</div>
+        <div id="d1"></div>
+        <div id="d2"></div>
+
+    </div>
+
+</body>
+
+</html>
